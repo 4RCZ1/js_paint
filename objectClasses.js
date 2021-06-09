@@ -327,7 +327,7 @@ class Polygon{
         i=i*2;
         //console.log("equation for point",i/2,":",(this.points[i+1]-this.points[i+3])/(this.points[i]-this.points[i+2])*(x-this.points[i+2])+this.points[i+3])
         //console.log("mouseY:",mouseY)
-        if(this.points[i+1]===this.points[i+3]){
+        if(this.points[i]===this.points[i+2]){
             return mouseY;
         }else {
             return ((this.points[i + 1] - this.points[i + 3]) / (this.points[i] - this.points[i + 2]) * (x - this.points[i + 2]) + this.points[i + 3]);
