@@ -38,7 +38,7 @@ function objSelect(){
 }
 function objAdd(_object){
     let b=false,f=false;
-    addLayer();
+    addLayer("object");
 
     placedObject=_object;
     cCursor = document.getElementById("cursor");
