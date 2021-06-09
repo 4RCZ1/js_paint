@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Emotki</title>
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="renderer.js"></script>
+    <script src="cursor.js"></script>
+    <script src="objectHandler.js"></script>
+    <script src="properteries.js"></script>
+    <script src="fileOperator.js"></script>
+    <script src="layers.js"></script>
+    <script src="objectClasses.js"></script>
+    <script src="interface.js"></script>
+    <script src="timeline.js"></script>
+</head>
+<body onload="presetting()">
+    <div id="TOOLBAR">
+        <button type="button" onclick="clear2()">Clear</button>
+        <div class="dropdown">
+            <span>File</span>
+            <div class="dropdown-content">
+                <button onclick="clearFile()">New</button>
+                <button onclick="saveFile()">Save</button>
+                <button onclick="openFile()">Open</button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span>Add</span>
+            <div class="dropdown-content">
+                <button id="addRectangle" onclick="_add('rectangle')">Rectangle</button>
+                <button id="addCircle" onclick="_add('circle')">Circle</button>
+                <button id="addBezier" onclick="_add('bezier')">Bezier Curve</button>
+                <button id="addPolygon" onclick="_add('polygon')">Polygon</button>
+            </div>
+        </div>
+        <div class="dropdown">
+            <span>Tool</span>
+            <div class="dropdown-content">
+                <button onclick="_add('eraser')">Eraser</button>
+                <button onclick="select()">Select</button>
+            </div>
+        </div>
+    </div>
+    <div id="WORKSPACE">
+        <canvas width="500" height="500" id="cursor"></canvas>
+        <canvas width="500" height="500" id="clickGetter" onclick="placeObject()" onmousedown="brushStart()" onmouseup="brushStop()" onmouseleave="brushStop()"></canvas>
+        <canvas width="500" height="500" id="0" style="z-index: 0;"></canvas>
+    </div>
+    <div id="PROPERTIES">
+        <div id="objectBox">
+            <label for="aMode">Object mode:</label>
+            <input type="checkbox" id="aMode" onchange="modeSetter()">
+
+            <label for="objects">Choose object to edit:</label>
+            <select name="objects" id="objects" size="4" onchange="objSelect()">
+
+            </select>
+        </div>
+        <div id="LayersBox"><label for="layers">Choose a layer:</label>
+            <select name="layers" id="layers" onchange="layerSelect()">
+                <option value="0">Layer 0</option>
+            </select>
+            <button type="button" onclick="addLayer()">Add layer</button>
+        </div>
+        <div id="SizesBox">
+            <div id="pixelSizes">
+                <label for="width">Width: </label>
+                <input type="number" value="10" min="1" id="width" onchange="widthSetter()">
+                <label for="height">Height: </label>
+                <input type="number" value="10" min="1" id="height" onchange="heightSetter()">
+                <label for="radius">Radius: </label>
+                <input type="number" value="10" min="1" id="radius" onchange="radiusSetter()">
+            </div>
+            <label for="lWidth">Line width: </label>
+            <input type="number" value="3" min="1" id="lWidth" onchange="lWidthSetter()">
+        </div>
+        <div id="BordersBox">
+            <label for="fill">Fill: </label>
+            <input type="checkbox" id="fill" onchange="fillSetter()">
+            <label for="border">Border: </label>
+            <input type="checkbox" id="border" onchange="borderSetter()" checked="checked">
+
+            <label for="borderColor">Border color: </label>
+            <input type="color" id="borderColor" onchange="borderColorSetter()">
+            <label for="fillColor">Fill color: </label>
+            <input type="color" id="fillColor" onchange="fillColorSetter()">
+        </div>
+        <div id="brushBox">
+            <label for="brush">Brush mode: </label>
+            <input type="checkbox" id="brush" onchange="brushSetter()">
+        </div>
+        <div id="confirmBox">
+            <button type="button" id="submit" onclick="submit()">Submit</button>
+        </div>
+    </div>
+    <div id="TIMELINE">
+        <div id="frameNumbers">
+            <label for="startFrame">starting frame</label>
+            <input type="number" id="startFrame" onchange="startFrameSetter()" value="0">
+
+            <label for="frame">frame</label>
+            <input type="number" id="frame" onchange="frameSetter()" value="0">
+
+            <label for="endFrame">end frame</label>
+            <input type="number" id="endFrame" onchange="endFrameSetter()" value="100">
+        </div>
+        <div id="keyframes">
+            <button id="addKeyframe" onclick="addKeyframe()">Add keyframe</button>
+        </div>
+        <div id="timelineButtons">
+            <button onclick="prevFrame()">Previous frame</button>
+            <button onclick="play()">Play</button>
+            <button onclick="stop()">Pause</button>
+            <button onclick="nextFrame()">Next frame</button>
+
+            <label for="endFrame">Framerate</label>
+            <input type="number" id="framerate" onchange="framerateSetter()" value="12" min="1" max="60">
+        </div>
+    </div>
+</body>
+</html>
