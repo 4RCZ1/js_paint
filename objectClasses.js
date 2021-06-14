@@ -293,7 +293,6 @@ class Polygon{
     }
 
     //warto by ten kod opisać troszkę
-    //TODO punkty się nie dodają!!!
     configure(){
         this.noFollower=true;
         for(let i=0;i<this.pins.length;i++){
@@ -325,8 +324,6 @@ class Polygon{
     //(początekY-koniecY)/(początekX-koniecX)*(x-koniecX)+koniecY
     equation(i,x){
         i=i*2;
-        //console.log("equation for point",i/2,":",(this.points[i+1]-this.points[i+3])/(this.points[i]-this.points[i+2])*(x-this.points[i+2])+this.points[i+3])
-        //console.log("mouseY:",mouseY)
         if(this.points[i]===this.points[i+2]){
             return mouseY;
         }else {
@@ -342,7 +339,7 @@ class Polygon{
         }
     }
 
-    save(){
+    save(mode=""){
         clear("cursor");
 
         if (fill) {

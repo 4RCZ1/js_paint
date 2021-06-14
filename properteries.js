@@ -6,7 +6,7 @@ let width=10,
     border=true,
     brush=false,
     lWidth=3,
-    aMode=false,
+    objectMode=false,
     canvasW=500,
     canvasH=500;
 
@@ -92,8 +92,8 @@ function brushReversedSetter(value){
 }
 
 function modeSetter(){
-    aMode=document.getElementById("aMode").checked;
-    if(aMode===true) {
+    objectMode=document.getElementById("aMode").checked;
+    if(objectMode===true) {
         document.getElementById("brushBox").style.display = "none";
         document.getElementById("LayersBox").style.display = "none";
         document.getElementById("pixelSizes").style.display = "none";

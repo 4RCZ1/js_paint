@@ -9,12 +9,29 @@ keyframe sie pierdola nwm czemu wciaz;
 let keyframes = [],
     frames=[],
     lastKeyframe=0,
-    playTimer;
+    playTimer,
+    i=0;
+
+function checkExistingKeyframe(keyframe){
+    i++;
+    return keyframe[0]===frame;
+}
 
 function addKeyframe(){
-    keyframes.push([frame,ctx.getImageData(0,0,canvasW,canvasH)])
-    console.log(keyframes);
-    lastKeyframe=keyframes.length-1;
+    if(objectMode===false) {
+        i=0;
+        if(keyframes.find(checkExistingKeyframe)) {
+            console.log("KLATKA ISTNIEJE, AKTUALIZUJE KEYFRAME NR",i-1);
+            keyframes[i-1]=[frame, ctx.getImageData(0, 0, canvasW, canvasH)];
+        }else {
+            console.log("Nowa klateczkaaaa");
+            keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)])
+        }
+        console.log(keyframes);
+        lastKeyframe = keyframes.length - 1;
+    }else{
+
+    }
 }
 
 function setFrame(){
@@ -28,29 +45,46 @@ function setFrame(){
     }
 }
 function nextFrame(){
-    console.log("nextFrame");
-    if(lastKeyframe<keyframes.length&&frame<keyframes.length){
-        if(keyframes[lastKeyframe+1][0]===frame){
-            console.log("keyframe");
-            clear();
-            ctx.putImageData(keyframes[lastKeyframe + 1][1], 0, 0);
-            lastKeyframe++;
+    if(frame<endFrame)
+    {
+        try {
+            if (lastKeyframe < keyframes.length && frame < keyframes.length) {
+                if (keyframes[lastKeyframe + 1][0] === frame) {
+                    clear();
+                    ctx.putImageData(keyframes[lastKeyframe + 1][1], 0, 0);
+                    lastKeyframe++;
+                }
+            }
+        }catch{
+
         }
+        frame++;
+        document.getElementById("frame").value = frame;
     }
 }
 function prevFrame(){
-    console.log("prevFrame");
-    if(lastKeyframe>0 && keyframes[lastKeyframe-1][0]===frame){
-        console.log("keyframe");
-        clear();
-        ctx.putImageData(keyframes[lastKeyframe-1][1],0,0);
-        lastKeyframe--;
+    if(frame>startFrame)
+    {
+
+        if (lastKeyframe > 0 && keyframes[lastKeyframe - 1][0] === frame) {
+            clear();
+            ctx.putImageData(keyframes[lastKeyframe - 1][1], 0, 0);
+            lastKeyframe--;
+        }
+        frame--;
+        document.getElementById("frame").value = frame;
     }
 }
 function cycleFrames(){
     if(frame<=endFrame){
         frame++;
-        nextFrame();
+        if (lastKeyframe < keyframes.length && frame < keyframes.length) {
+            if (keyframes[lastKeyframe + 1][0] === frame) {
+                clear();
+                ctx.putImageData(keyframes[lastKeyframe + 1][1], 0, 0);
+                lastKeyframe++;
+            }
+        }
     }else{
         frame=startFrame;
         setFrame();
