@@ -21,10 +21,8 @@ function addKeyframe(){
     if(objectMode===false) {
         i=0;
         if(keyframes.find(checkExistingKeyframe)) {
-            console.log("KLATKA ISTNIEJE, AKTUALIZUJE KEYFRAME NR",i-1);
             keyframes[i-1]=[frame, ctx.getImageData(0, 0, canvasW, canvasH)];
         }else {
-            console.log("Nowa klateczkaaaa");
             keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)])
         }
         console.log(keyframes);
