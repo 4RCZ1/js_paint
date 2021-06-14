@@ -16,13 +16,30 @@ function checkExistingKeyframe(keyframe){
     i++;
     return keyframe[0]===frame;
 }
+//to nie działa
+function findPreviousKeyframe(frame){
+    i++;
+    return frame[0]>frame;
+}
 
 function addKeyframe(){
     if(objectMode===false) {
         i=0;
         if(keyframes.find(checkExistingKeyframe)) {
             keyframes[i-1]=[frame, ctx.getImageData(0, 0, canvasW, canvasH)];
-        }else {
+        }else if(keyframes.length>0) {
+            if(keyframes[keyframes.length - 1][0]<frame){
+                keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)])
+            }else{
+                i=0;
+                //TODO znaleźć miejsce, w którym powinna być nowa keyframe, np klatka nr 3 przed klatką nr 4 itp
+                if(keyframes.find(findPreviousKeyframe)){
+                    keyframes.splice(i-2,0,[frame, ctx.getImageData(0, 0, canvasW, canvasH)]);
+                }else{
+                    keyframes.splice(0,0,[frame, ctx.getImageData(0, 0, canvasW, canvasH)]);
+                }
+            }
+        }else{
             keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)])
         }
         console.log(keyframes);
@@ -58,6 +75,10 @@ function nextFrame(){
         }
     }else{
         frame=startFrame;
+        lastKeyframe=0;
+        if(keyframes[0][0]===frame){
+            console.log("Na klatce początkowej jest keyframe")
+        }
     }
     document.getElementById("frame").value = frame;
 }
