@@ -31,7 +31,7 @@ function addKeyframe(){
 
     }
 }
-
+//To nie działa
 function setFrame(){
     console.log("Frame set");
     for(let i=0;i<keyframes.length;i++){
@@ -42,35 +42,38 @@ function setFrame(){
         }
     }
 }
+//to jakby działa?
 function nextFrame(){
     if(frame<endFrame)
     {
+        frame++
         try {
-            if (lastKeyframe < keyframes.length && frame < keyframes.length) {
-                if (keyframes[lastKeyframe + 1][0] === frame) {
-                    clear();
-                    ctx.putImageData(keyframes[lastKeyframe + 1][1], 0, 0);
-                    lastKeyframe++;
-                }
+            if (keyframes[lastKeyframe + 1][0] === frame) {
+                lastKeyframe++;
+                console.log("jest i keyframe");
             }
-        }catch{
-
         }
-        frame++;
-        document.getElementById("frame").value = frame;
+        catch{
+            console.log("nie ma keyframe");
+        }
+    }else{
+        frame=startFrame;
     }
+    document.getElementById("frame").value = frame;
 }
+//to nie działa
 function prevFrame(){
     if(frame>startFrame)
     {
-
-        if (lastKeyframe > 0 && keyframes[lastKeyframe - 1][0] === frame) {
-            clear();
-            ctx.putImageData(keyframes[lastKeyframe - 1][1], 0, 0);
-            lastKeyframe--;
-        }
         frame--;
         document.getElementById("frame").value = frame;
+        if (lastKeyframe > 0 && keyframes[lastKeyframe][0] === frame) {
+            clear();
+            lastKeyframe--;
+            ctx.putImageData(keyframes[lastKeyframe][1], 0, 0);
+
+        }
+
     }
 }
 function cycleFrames(){
