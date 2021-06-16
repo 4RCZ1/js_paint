@@ -76,7 +76,7 @@ function setFrame(){
     }
 
 }
-//to jakby działa?
+
 function nextFrame(){
     if(frame<endFrame)
     {
@@ -97,7 +97,7 @@ function nextFrame(){
     }
     document.getElementById("frame").value = frame;
 }
-//to nie działa
+
 function prevFrame(){
     if(frame>startFrame)
     {
