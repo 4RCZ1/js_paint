@@ -17,10 +17,16 @@ function checkExistingKeyframe(keyframe){
     return keyframe[0]===frame;
 }
 //to nie działa
-function findPreviousKeyframe(frame){
+function findPreviousKeyframe(keyframe){
     i++;
-    return frame[0]>frame;
+    return keyframe[0]>frame;
 }
+
+// chce dodać keyframe
+// jeśli keyfreame istnieje, to edytować, jeśli nie, to stworzyć nowy
+// jeśli tworzyć nowy, to jeśli ostatni keyframe jest z klatki większej niż dodawany keyframe, to trzeba znaleźć pierwszą wartość mniejszą niż dodawany keyframe i wstawić go przed nią
+// jeśli taki nie istnieje, to dac jako pierwszą klatkę
+// jeśli ostatni keyframe jest z klatki mniejszej niż dodawany keyframe, to dodać na końcu
 
 function addKeyframe(){
     if(objectMode===false) {
@@ -32,9 +38,8 @@ function addKeyframe(){
                 keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)])
             }else{
                 i=0;
-                //TODO znaleźć miejsce, w którym powinna być nowa keyframe, np klatka nr 3 przed klatką nr 4 itp
                 if(keyframes.find(findPreviousKeyframe)){
-                    keyframes.splice(i-2,0,[frame, ctx.getImageData(0, 0, canvasW, canvasH)]);
+                    keyframes.splice(i-1,0,[frame, ctx.getImageData(0, 0, canvasW, canvasH)]);
                 }else{
                     keyframes.splice(0,0,[frame, ctx.getImageData(0, 0, canvasW, canvasH)]);
                 }
