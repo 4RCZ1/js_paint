@@ -141,10 +141,10 @@ function modeSetter(){
 }
 
 function endFrameSetter(){
-    endFrame=document.getElementById("endFrame").value;
+    endFrame=parseInt(document.getElementById("endFrame").value);
 }
 function startFrameSetter(){
-    startFrame=document.getElementById("startFrame").value;
+    startFrame=parseInt(document.getElementById("startFrame").value);
 }
 function frameSetter(){
     if(frame-document.getElementById("frame").value===-1){
