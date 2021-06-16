@@ -148,10 +148,8 @@ function startFrameSetter(){
 }
 function frameSetter(){
     if(frame-document.getElementById("frame").value===-1){
-        frame=parseInt(document.getElementById("frame").value);
         nextFrame();
     }else if(frame-document.getElementById("frame").value===1){
-        frame=parseInt(document.getElementById("frame").value);
         prevFrame();
     }else{
         frame=parseInt(document.getElementById("frame").value);
