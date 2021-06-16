@@ -25,6 +25,10 @@ function allSetter(){
     borderColorSetter();
     brushSetter();
     lWidthSetter();
+    endFrameSetter();
+    startFrameSetter();
+    framerateSetter();
+    frameSetter();
     console.log("All set.");
 }
 function reversedAllSetter(b,f,w=false,h=false,r=false,lw=false){
