@@ -81,30 +81,31 @@ function setFrame(){
 function nextFrame(){
     if(frame<endFrame)
     {
-      frame++
-      if(objectMode===true)
-      {
-        try {
-          if (keyframes[lastKeyframe + 1][0] === frame) {
-              lastKeyframe++;
-              ctx.putImageData(keyframes[lastKeyframe][1],0,0);
-              console.log("jest i keyframe");
+          frame++
+          if(objectMode===false){
+                  try {
+                        if (keyframes[lastKeyframe + 1][0] === frame) {
+                            lastKeyframe++;
+                            ctx.putImageData(keyframes[lastKeyframe][1],0,0);
+                            console.log("jest i keyframe");
+                        }
+                  }
+                  catch{
+                       console.log("nie ma keyframe");
+                  }
+          }else {
+              //objektowa wersja
+              try {
+                  if (objectKeyframes[lastKeyframe + 1][0] === frame) {
+                      lastKeyframe++;
+                      objSelect(objectKeyframes[lastKeyframe][1][4]);
+                      object.update(objectKeyframes[lastKeyframe][1])
+                      console.log("jest i keyframe");
+                  }
+              }catch{
+                  
+              }
           }
-        }
-        catch{
-            console.log("nie ma keyframe");
-          }
-      }else {
-        //objektowa wersja
-        try {
-          if (objectKeyframes[lastKeyframe + 1][0] === frame) {
-              lastKeyframe++;
-              objSelect(objectKeyframes[lastKeyframe][1][4]);
-              object.update(objectKeyframes[lastKeyframe][1])
-              console.log("jest i keyframe");
-          }
-        }
-      }
     }else{
       frame=startFrame;
       setFrame();
