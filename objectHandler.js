@@ -19,8 +19,11 @@ function mouseUp(){
 function mouseLeave(){
     mousedown=false;
 }
-function objSelect(){
-    let i=document.getElementById("objects").value;
+function objSelect(i=null){
+    if(i===null)
+    {
+      i=document.getElementById("objects").value;
+    }
     ctxCursor.clearRect(0,0,500,500);
     if(objects[i][0]==="rect"){
         object=new Rectangle(objects[i][1],objects[i][2],objects[i][3],objects[i][4],objects[i][5],objects[i][6],objects[i][7],i)

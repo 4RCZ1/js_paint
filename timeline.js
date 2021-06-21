@@ -3,11 +3,11 @@ nwm czy bledy:
 
 
 bledy:
-keyframe sie pierdola nwm czemu wciaz;
+
 
  */
 let keyframes = [],
-    frames=[],
+    objectKeyframes = [],
     lastKeyframe=0,
     playTimer,
     i=0;
@@ -15,11 +15,11 @@ let keyframes = [],
 function checkIfKeyframeExist(keyframe){
     i++;
     return keyframe[0]===frame;
+
 }
 
 function findPreviousKeyframe(keyframe){
     i++;
-
     return keyframe[0]>frame;
 
 }
@@ -47,6 +47,7 @@ function addKeyframe(){
         lastKeyframe = keyframes.length - 1;
     }else{
         //obiektowa wersja dodawania klatek
+        objectKeyframes.push([frame,[object.getData()]]);
     }
 }
 
@@ -80,20 +81,33 @@ function setFrame(){
 function nextFrame(){
     if(frame<endFrame)
     {
-        frame++
+      frame++
+      if(objectMode===true)
+      {
         try {
-            if (keyframes[lastKeyframe + 1][0] === frame) {
-                lastKeyframe++;
-                ctx.putImageData(keyframes[lastKeyframe][1],0,0);
-                console.log("jest i keyframe");
-            }
+          if (keyframes[lastKeyframe + 1][0] === frame) {
+              lastKeyframe++;
+              ctx.putImageData(keyframes[lastKeyframe][1],0,0);
+              console.log("jest i keyframe");
+          }
         }
         catch{
             console.log("nie ma keyframe");
+          }
+      }else {
+        //objektowa wersja
+        try {
+          if (objectKeyframes[lastKeyframe + 1][0] === frame) {
+              lastKeyframe++;
+              objSelect(objectKeyframes[lastKeyframe][1][4]);
+              object.update(objectKeyframes[lastKeyframe][1])
+              console.log("jest i keyframe");
+          }
         }
+      }
     }else{
-        frame=startFrame;
-        setFrame();
+      frame=startFrame;
+      setFrame();
     }
     document.getElementById("frame").value = frame;
 }
@@ -133,4 +147,3 @@ function play(){
 function stop(){
     clearInterval(playTimer);
 }
-
