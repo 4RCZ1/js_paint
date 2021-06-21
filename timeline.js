@@ -98,12 +98,12 @@ function nextFrame(){
               try {
                   if (objectKeyframes[lastKeyframe + 1][0] === frame) {
                       lastKeyframe++;
-                      objSelect(objectKeyframes[lastKeyframe][1][4]);
-                      object.update(objectKeyframes[lastKeyframe][1])
+                      objSelect(objectKeyframes[lastKeyframe][1][0][4]);
+                      object.update(objectKeyframes[lastKeyframe][0][1]);
                       console.log("jest i keyframe");
                   }
               }catch{
-                  
+                  console.log("Nie ma objKeyframe");
               }
           }
     }else{
