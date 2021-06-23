@@ -32,7 +32,7 @@ class Rectangle {
     configure(){
         this.sizePin.modify(this.x+this.w,this.y+this.h);
         this.centerPin.modify(this.x+this.w/2,this.y+this.h/2);
-        
+
         this.centerPin.draw();
         this.sizePin.draw();
         this.centerPin.followOnClick();

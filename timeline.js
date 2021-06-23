@@ -30,7 +30,7 @@ function addKeyframe(){
             keyframes[i-1]=[frame, ctx.getImageData(0, 0, canvasW, canvasH)];
         }else if(keyframes.length>0) {
             if(keyframes[keyframes.length - 1][0]<frame){
-                keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)])
+                keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)]);
             }else{
                 i=0;
                 if(keyframes.find(findPreviousKeyframe)){
@@ -40,14 +40,46 @@ function addKeyframe(){
                 }
             }
         }else{
-            keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)])
+            keyframes.push([frame, ctx.getImageData(0, 0, canvasW, canvasH)]);
         }
         console.log(keyframes);
         lastKeyframe = keyframes.length - 1;
     }else{
         //obiektowa wersja dodawania klatek
-        objKeyframes.push([frame,[object.getData()]]);
+        //objKeyframes.push([frame,[object.getData()]]);
+        //console.log(objKeyframes);
+        i=0;
+        if(objKeyframes.find(checkIfKeyframeExist)) {
+
+            let found = false;
+            let newData = object.getData();
+            for(let j=0;j<objKeyframes[i-1][1].length;j++){
+                if(objKeyframes[i-1][1][j][objKeyframes[i-1][1][j].length - 1]===newData[newData.length-1]){
+                    objKeyframes[i-1][1][j]=newData;
+                    found=true;
+                    break;
+                }
+            }
+            if(!found){
+                objKeyframes[i-1][1].push(newData);
+            }
+
+        }else if(objKeyframes.length>0) {
+            if(objKeyframes[objKeyframes.length - 1][0]<frame){
+                objKeyframes.push([frame,[object.getData()]]);
+            }else{
+                i=0;
+                if(objKeyframes.find(findPreviousKeyframe)){
+                    objKeyframes.splice(i-1,0,[frame,[object.getData()]]);
+                }else{
+                    objKeyframes.splice(0,0,[frame,[object.getData()]]);
+                }
+            }
+        }else{
+            objKeyframes.push([frame,[object.getData()]]);
+        }
         console.log(objKeyframes);
+        lastKeyframe = objKeyframes.length - 1;
     }
 }
 
