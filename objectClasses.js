@@ -62,7 +62,7 @@ class Rectangle {
 
         if(this.index===null) {
             objects.push(["rect",this.x, this.y, this.w, this.h, this.layer, this.b, this.f, objects.length]);
-            addObject("Rectangle")
+            addObjectToList("Rectangle")
         }else{
             objects[this.index]=["rect",this.x, this.y, this.w, this.h, this.layer, this.b, this.f, this.index];
         }
@@ -146,7 +146,7 @@ class Circle {
 
         if (this.index === null) {
             objects.push(["circ", this.x, this.y, this.r, this.layer, this.b, this.f, objects.length]);
-            addObject("Circle")
+            addObjectToList("Circle")
         } else {
             objects[this.index] = ["circ", this.x, this.y, this.r, this.layer, this.b, this.f, this.index];
         }
@@ -256,7 +256,7 @@ class Bezier{
 
         if (this.index === null) {
             objects.push(["bez", this.startX, this.startY, this.cp1x, this.cp1y, this.cp2x, this.cp2y, this.endX, this.endY, this.layer, this.b, this.f, objects.length]);
-            addObject("Bezier")
+            addObjectToList("Bezier")
         } else {
             objects[this.index] = ["bez", this.startX, this.startY, this.cp1x, this.cp1y, this.cp2x, this.cp2y, this.endX, this.endY, this.layer, this.b, this.f, this.index];
         }
@@ -362,7 +362,7 @@ class Polygon{
 
         if (this.index === null) {
             objects.push(["poly", this.points, this.layer, this.b, this.f, objects.length]);
-            addObject("Polygon")
+            addObjectToList("Polygon")
         } else {
             objects[this.index] = ["poly", this.points, this.layer, this.b, this.f, this.index];
         }
@@ -372,10 +372,4 @@ class Polygon{
         console.log("Points:",this.points," layer:", this.layer, " b:", this.b, " f:", this.f)
     }
 }
-function addObject(label){
-    let option = document.createElement("option");
-    option.text = label;
-    option.value = objects.length-1;
-    document.getElementById("objects").add(option);
-    objLayerSelect(layerNum);
-}
+

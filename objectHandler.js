@@ -1,4 +1,4 @@
-let mousedown,object,activeObject;
+let mousedown,object,activeObject,objectID=0;
 function click(){
     if(placedObject==="rectangle"){
 
@@ -78,6 +78,15 @@ function objAdd(_object){
 
     console.log("object ",_object," added");
 
+}
+
+function addObjectToList(label){
+    let option = document.createElement("option");
+    option.text = label+" "+objectID;
+    option.value = objects.length-1;
+    document.getElementById("objects").add(option);
+    objLayerSelect(layerNum);
+    objectID++;
 }
 
 function objSubmit(){
