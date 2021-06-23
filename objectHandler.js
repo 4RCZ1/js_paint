@@ -20,6 +20,7 @@ function mouseLeave(){
     mousedown=false;
 }
 function objSelect(i=null){
+    clearInterval(objTimer);
     if(i===null)
     {
       i=document.getElementById("objects").value;
@@ -36,7 +37,12 @@ function objSelect(i=null){
     }else if(objects[i][0]==="poly"){
         object=new Polygon(objects[i][1],objects[i][2],objects[i][3],objects[i][4],objects[i][5],i)
     }
-    objTimer=setInterval(function(){object.draw();object.configure();},10);
+    if(isPlaying===false) {
+        objTimer = setInterval(function () {
+            object.draw();
+            object.configure();
+        }, 10);
+    }
     console.log("Layer set to "+activeLayer);
 }
 function objAdd(_object){

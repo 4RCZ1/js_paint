@@ -30,6 +30,9 @@ class Rectangle {
         }
     }
     configure(){
+        this.sizePin.modify(this.x+this.w,this.y+this.h);
+        this.centerPin.modify(this.x+this.w/2,this.y+this.h/2);
+        
         this.centerPin.draw();
         this.sizePin.draw();
         this.centerPin.followOnClick();
@@ -68,14 +71,15 @@ class Rectangle {
         }
     }
     update(changes){
-      this.x=changes[0];
-      this.y=changes[1];
-      this.w=changes[2];
-      this.h=changes[3];
+        this.x=changes[0];
+        this.y=changes[1];
+        this.w=changes[2];
+        this.h=changes[3];
     }
     getData(){
-      //tu może być warto dodać jakieś zabezpieczenie przed braniem danych od nieistniejących obiektów (index=null)
-      return [this.x,this.y,this.w,this.h,this.index];
+        //tu może być warto dodać jakieś zabezpieczenie przed braniem danych od nieistniejących obiektów (index=null)
+        console.log([this.x,this.y,this.w,this.h,this.index])
+        return [this.x,this.y,this.w,this.h,this.index];
     }
     debug(){
         console.log("x:",this.x," y:",this.y," w:",this.w," h:",this.h," layer:",this.layer," b:",this.b," f:",this.f);
