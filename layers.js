@@ -30,5 +30,4 @@ function objLayerSelect(layer){
     ctx = c.getContext("2d");
     document.getElementById("cursor").style.zIndex=parseInt(layerNum) + 1;
     console.log("Object layer set to "+layer);
-    allSetter();
 }
