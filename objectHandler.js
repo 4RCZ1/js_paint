@@ -46,6 +46,7 @@ function objSelect(i=null){
     console.log("Layer set to "+activeLayer);
 }
 function objAdd(_object){
+    clearInterval(objTimer);
     let b=false,f=false;
     addLayer("object");
 
