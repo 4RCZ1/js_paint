@@ -7,6 +7,7 @@ function addLayer(type="rasterized"){
         layer.height = 500;
         layer.style.zIndex=layerNum;
         document.getElementById("WORKSPACE").appendChild(layer);
+        activeLayer=layerNum;
         //dodaje wpis w liście warstw tylko wtedy, kiedy warstwa jest rasteryzowana
         if(type==="rasterized") {
             let option = document.createElement("option");
@@ -14,7 +15,9 @@ function addLayer(type="rasterized"){
             option.value = layerNum;
             document.getElementById("layers").add(option);
             document.getElementById("clickGetter").style.zIndex = parseInt(layerNum) + 2;
+            document.getElementById("layers").value=activeLayer;
         }
+
 }
 function layerSelect(){
     activeLayer=document.getElementById("layers").value;
