@@ -77,8 +77,10 @@ class Rectangle {
         this.h=changes[3];
     }
     getData(){
-        //tu może być warto dodać jakieś zabezpieczenie przed braniem danych od nieistniejących obiektów (index=null)
-        console.log([this.x,this.y,this.w,this.h,this.index])
+        if(this.index===null){
+            this.save();
+            this.index=objects.length-1;
+        }
         return [this.x,this.y,this.w,this.h,this.index];
     }
     debug(){
@@ -98,7 +100,7 @@ class Circle {
 
         console.log(layer);
         objLayerSelect(layer);
-        reversedAllSetter(this.b, this.f, false, false, this.r);
+        //reversedAllSetter(this.b, this.f, false, false, this.r);
 
         this.centerPin = new Pinpoint(this.x, this.y);
         this.sizePin = new Pinpoint(this.x - this.r * Math.sqrt(2) / 2, this.y - this.r * Math.sqrt(2) / 2);
@@ -157,6 +159,19 @@ class Circle {
         clearInterval(objTimer);
     }
 
+    update(changes){
+        this.x=changes[0];
+        this.y=changes[1];
+        this.r=changes[2];
+    }
+    getData(){
+        if(this.index===null){
+            this.save();
+            this.index=objects.length-1;
+        }
+        return [this.x,this.y,this.r,this.index];
+    }
+
     debug() {
         console.log("x:", this.x, " y:", this.y, " r:", this.r, " layer:", this.layer, " b:", this.b, " f:", this.f);
     }
@@ -180,7 +195,7 @@ class Bezier{
 
         console.log(layer);
         objLayerSelect(layer);
-        reversedAllSetter(this.b,this.f,false,false,false,this.lw);
+        //reversedAllSetter(this.b,this.f,false,false,false,this.lw);
         this.startPin=new Pinpoint(startX,startY);
         this.cp1Pin=new Pinpoint(cp1x,cp1y);
         this.cp2Pin=new Pinpoint(cp2x,cp2y);
@@ -266,6 +281,25 @@ class Bezier{
         }
         clearInterval(objTimer);
     }
+
+    update(changes){
+        this.startX=changes[0];
+        this.startY=changes[1];
+        this.cp1x=changes[2];
+        this.cp1y=changes[3];
+        this.cp2x=changes[4];
+        this.cp2y=changes[5];
+        this.endX=changes[6];
+        this.endY=changes[7];
+    }
+    getData(){
+        if(this.index===null){
+            this.save();
+            this.index=objects.length-1;
+        }
+        return [this.startX, this.startY, this.cp1x, this.cp1y, this.cp2x, this.cp2y, this.endX, this.endY,this.index];
+    }
+
     debug(){
         console.log("startX:",this.startX," startY:", this.startY," cp1x:", this.cp1x," cp1y:", this.cp1y," cp2x:", this.cp2x," cp2y:", this.cp2y," endX:", this.endX," endY:", this.endY," layer:", this.layer," b:", this.b," f:", this.f);
     }
@@ -285,7 +319,7 @@ class Polygon{
 
         console.log(layer);
         objLayerSelect(layer);
-        reversedAllSetter(this.b,this.f,false,false,false,this.lw);
+        //reversedAllSetter(this.b,this.f,false,false,false,this.lw);
         clear("cursor");
         for(let i=0;i<this.points.length;i+=2){
             this.initializePoint(this.points[i],this.points[i+1]);
@@ -310,11 +344,9 @@ class Polygon{
     configure(){
         this.noFollower=true;
         for(let i=0;i<this.pins.length;i++){
-            //console.log("focus is on pin: ",i);
             this.pins[i].draw();
             this.pins[i].followOnClick();
             if (this.pins[i].following) {
-
                 this.following = true;
                 this.noFollower = false;
                 this.points[i * 2] = mouseX;
@@ -329,7 +361,6 @@ class Polygon{
                 }
             }
         }
-        //console.log("number of pins: ",this.pins.length);
         if(this.noFollower){
             this.following=false;
         }
@@ -372,6 +403,23 @@ class Polygon{
         }
         clearInterval(objTimer);
     }
+
+    update(changes){
+        this.points=changes[0];
+        this.pins=[];
+
+        for(let i=0;i<this.points.length;i+=2){
+            this.initializePoint(this.points[i],this.points[i+1]);
+        }
+    }
+    getData(){
+        if(this.index===null){
+            this.save();
+            this.index=objects.length-1;
+        }
+        return [this.points, this.index];
+    }
+
     debug(){
         console.log("Points:",this.points," layer:", this.layer, " b:", this.b, " f:", this.f)
     }
