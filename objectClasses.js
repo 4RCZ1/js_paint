@@ -10,7 +10,7 @@ class Rectangle {
         this.f=f;
         this.index=index;
 
-        console.log(layer);
+        //console.log(layer);
         objLayerSelect(layer);
         //reversedAllSetter(this.b,this.f,this.w,this.h);
 
@@ -98,7 +98,7 @@ class Circle {
         this.f = f;
         this.index = index;
 
-        console.log(layer);
+        //console.log(layer);
         objLayerSelect(layer);
         //reversedAllSetter(this.b, this.f, false, false, this.r);
 
@@ -193,7 +193,7 @@ class Bezier{
         this.lw=lw;
         this.index=index;
 
-        console.log(layer);
+        //console.log(layer);
         objLayerSelect(layer);
         //reversedAllSetter(this.b,this.f,false,false,false,this.lw);
         this.startPin=new Pinpoint(startX,startY);
@@ -317,7 +317,7 @@ class Polygon{
         this.following=false;
         this.noFollower=false;
 
-        console.log(layer);
+        //console.log(layer);
         objLayerSelect(layer);
         //reversedAllSetter(this.b,this.f,false,false,false,this.lw);
         clear("cursor");
