@@ -115,8 +115,10 @@ function setFrame(){
             i = 0;
             if (objKeyframes.find(findPreviousKeyframe)) {
                 lastKeyframe = i - 2;
+                objFrameInterpolator();
             } else {
                 lastKeyframe = objKeyframes.length - 1;
+                objFramePutter(lastKeyframe);
             }
 
         }
@@ -182,6 +184,8 @@ function prevFrame(){
                     lastKeyframe--;
                     objFramePutter()
                     console.log("jest i objKeyframe");
+                }else{
+                    objFrameInterpolator(true);
                 }
             }catch{
                 console.log("Nie ma objKeyframe");
@@ -223,17 +227,33 @@ function objFramePutter(j=null){
     })
 }
 //TODO: Make it per object, not per keyframe
-function objFrameInterpolator(){
-    let frameDifference = objKeyframes[lastKeyframe+1][0]-objKeyframes[lastKeyframe][0];
-    let framesPassed = frame-objKeyframes[lastKeyframe][0];
-    objKeyframes[lastKeyframe][1].forEach(function(item, index){
-        objSelect(item[item.length-1]);
-        let updateData=item.slice(0,item.length-1);
-        for(let i = 0 ; i<updateData.length; i++){
-            //startValue+(endValue-startValue)/steps*(actualStep-startStep)=actualValue
-            updateData[i] += (objKeyframes[lastKeyframe+1][1][index][i]-updateData[i])/frameDifference*framesPassed;
-        }
-        object.update(updateData);
-        object.draw();
-    })
+function objFrameInterpolator(backwards=false){
+    if(backwards){
+        let frameDifference = objKeyframes[lastKeyframe - 1][0] - objKeyframes[lastKeyframe][0];
+        let framesPassed =objKeyframes[lastKeyframe][0] - frame;
+        objKeyframes[lastKeyframe][1].forEach(function (item, index) {
+            objSelect(item[item.length - 1]);
+            let updateData = item.slice(0, item.length - 1);
+            for (let i = 0; i < updateData.length; i++) {
+                //startValue+(endValue-startValue)/steps*(actualStep-startStep)=actualValue
+                updateData[i] += (objKeyframes[lastKeyframe - 1][1][index][i] - updateData[i]) / frameDifference * framesPassed;
+            }
+            object.update(updateData);
+            object.draw();
+        });
+    }else {
+        let frameDifference = objKeyframes[lastKeyframe + 1][0] - objKeyframes[lastKeyframe][0];
+        let framesPassed = frame - objKeyframes[lastKeyframe][0];
+        objKeyframes[lastKeyframe][1].forEach(function (item, index) {
+            objSelect(item[item.length - 1]);
+            let updateData = item.slice(0, item.length - 1);
+            for (let i = 0; i < updateData.length; i++) {
+                //startValue+(endValue-startValue)/steps*(actualStep-startStep)=actualValue
+                updateData[i] += (objKeyframes[lastKeyframe + 1][1][index][i] - updateData[i]) / frameDifference * framesPassed;
+            }
+            object.update(updateData);
+            object.draw();
+        });
+    }
+
 }
