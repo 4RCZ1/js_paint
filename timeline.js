@@ -1,11 +1,3 @@
-/*
-nwm czy bledy:
-
-
-bledy:
-
-
- */
 let keyframes = [],
     objKeyframes = [],
     lastKeyframe=0,
@@ -22,6 +14,7 @@ function findPreviousKeyframe(keyframe){
     i++;
     return keyframe[0]>frame;
 }
+
 
 function addKeyframe(){
     if(objectMode===false) {
@@ -46,8 +39,6 @@ function addKeyframe(){
         lastKeyframe = keyframes.length - 1;
     }else{
         //obiektowa wersja dodawania klatek
-        //objKeyframes.push([frame,[object.getData()]]);
-        //console.log(objKeyframes);
         i=0;
         if(objKeyframes.find(checkIfKeyframeExist)) {
 
@@ -133,12 +124,6 @@ function setFrame(){
 
 }
 
-//[ [0,[ [dane obiektu],[dane obiektu2] ] ] ]
-//[0]=[0,[ [dane obiektu],[dane obiektu2] ] ]
-//[0][0]=0
-//[0][1]=[ [dane obiektu],[dane obiektu2] ]
-//[0][1][0]=[dane obiektu]
-
 function nextFrame(){
     if(frame<endFrame)
     {
@@ -160,10 +145,14 @@ function nextFrame(){
                 if (objKeyframes[lastKeyframe + 1][0] === frame) {
                     lastKeyframe++;
                     objFramePutter()
-                    console.log("jest i objKeyframe");
+                    console.log("objKeyframe placed");
+                }else{
+                    console.log("No objKeyframe present, trying interpolation");
+                    objFrameInterpolator();
                 }
+
             }catch{
-                console.log("Nie ma objKeyframe");
+                console.log("Last keyframe is behind");
             }
         }
     }else{
@@ -230,6 +219,21 @@ function objFramePutter(j=null){
     objKeyframes[j][1].forEach(function(item){
         objSelect(item[item.length-1]);
         object.update(item.slice(0,item.length-1));
+        object.draw();
+    })
+}
+//TODO: Make it per object, not per keyframe
+function objFrameInterpolator(){
+    let frameDifference = objKeyframes[lastKeyframe+1][0]-objKeyframes[lastKeyframe][0];
+    let framesPassed = frame-objKeyframes[lastKeyframe][0];
+    objKeyframes[lastKeyframe][1].forEach(function(item, index){
+        objSelect(item[item.length-1]);
+        let updateData=item.slice(0,item.length-1);
+        for(let i = 0 ; i<updateData.length; i++){
+            //startValue+(endValue-startValue)/steps*(actualStep-startStep)=actualValue
+            updateData[i] += (objKeyframes[lastKeyframe+1][1][index][i]-updateData[i])/frameDifference*framesPassed;
+        }
+        object.update(updateData);
         object.draw();
     })
 }
