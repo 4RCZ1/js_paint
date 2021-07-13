@@ -4,7 +4,7 @@ let width=10,
     radius=10,
     fill=false,
     border=true,
-    brush=false,
+    brushMode=false,
     lWidth=3,
     objectMode=false,
     canvasW=500,
@@ -23,7 +23,6 @@ function allSetter(){
     borderSetter();
     fillColorSetter();
     borderColorSetter();
-    brushSetter();
     lWidthSetter();
     endFrameSetter();
     startFrameSetter();
@@ -87,18 +86,10 @@ function borderColorSetter(){
     ctx.strokeStyle=document.getElementById("borderColor").value;
     ctxCursor.strokeStyle=document.getElementById("borderColor").value;
 }
-function brushSetter(){
-    brush=document.getElementById("brush").checked;
-}
-function brushReversedSetter(value){
-    document.getElementById("brush").checked=value;
-    brush=document.getElementById("brush").checked;
-}
 
 function modeSetter(){
     objectMode=document.getElementById("aMode").checked;
     if(objectMode===true) {
-        document.getElementById("brushBox").style.display = "none";
         document.getElementById("LayersBox").style.display = "none";
         document.getElementById("pixelSizes").style.display = "none";
         //setting clicks
@@ -120,7 +111,6 @@ function modeSetter(){
         clearInterval(placing);
         submit();
     }else{
-        document.getElementById("brushBox").style.display = "block";
         document.getElementById("LayersBox").style.display = "block";
         document.getElementById("pixelSizes").style.display = "block";
         //setting clicks
@@ -135,7 +125,6 @@ function modeSetter(){
         document.getElementById("addPolygon").setAttribute('onclick',"_add('polygon')");
         //setting buttons
         document.getElementById("submit").setAttribute('onclick',"submit()");
-        brushSetter();
         objSubmit();
     }
 }

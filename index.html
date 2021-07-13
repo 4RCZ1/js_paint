@@ -13,6 +13,7 @@
     <script src="objectClasses.js"></script>
     <script src="interface.js"></script>
     <script src="timeline.js"></script>
+    <script src="tools.js"></script>
 </head>
 <body onload="presetting()">
     <div id="TOOLBAR">
@@ -39,6 +40,7 @@
             <div class="dropdown-content">
                 <button onclick="_add('eraser')">Eraser</button>
                 <button onclick="select()">Select</button>
+                <button onclick="brush()">Brush</button>
             </div>
         </div>
     </div>
@@ -86,10 +88,10 @@
             <label for="fillColor">Fill color: </label>
             <input type="color" id="fillColor" onchange="fillColorSetter()">
         </div>
-        <div id="brushBox">
-            <label for="brush">Brush mode: </label>
-            <input type="checkbox" id="brush" onchange="brushSetter()">
-        </div>
+<!--        <div id="brushBox">-->
+<!--            <label for="brush">Brush mode: </label>-->
+<!--            <input type="checkbox" id="brush" onchange="brushSetter()">-->
+<!--        </div>-->
         <div id="confirmBox">
             <button type="button" id="submit" onclick="submit()">Submit</button>
         </div>

@@ -74,7 +74,6 @@ function _add(_object){
         placing=setInterval(configurePoint,10);
     }
     else {
-        //placing = setInterval(placingBezier, 10);
         placing=0;
     }
 
@@ -235,13 +234,6 @@ function addPoint(){
     points.push(mouseY);
 }
 
-function select(){
-    ctxCursor.clearRect(0,0,500,500);
-    clearInterval(placing);
-    clearInterval(cTimer);
-    placing=null;
-}
-
 function placeObject(){
     if(placing!=null) {
         //clearInterval(placing);
@@ -297,7 +289,6 @@ function placeObject(){
         else {
             clearInterval(placing);
             if(phase===0) {
-                brushReversedSetter(false);
                 bezierController();
                 phase++;
             }else if(phase===1){
@@ -365,11 +356,4 @@ function submit(){
     }
 }
 
-function brushStart(){
-    if(brush) {
-        brushTimer = setInterval(placeObject, 10);
-    }
-}
-function brushStop(){
-    clearInterval(brushTimer);
-}
+
