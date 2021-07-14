@@ -23,7 +23,7 @@
             <div class="dropdown-content">
                 <button onclick="clearFile()">New</button>
                 <button onclick="saveFile()">Save</button>
-                <button onclick="openFile()">Open</button>
+                <button onclick="selectFile()">Open</button>
             </div>
         </div>
         <div class="dropdown">
@@ -114,6 +114,19 @@
 
             <label for="endFrame">Framerate</label>
             <input type="number" id="framerate" onchange="framerateSetter()" value="12" min="1" max="60">
+        </div>
+    </div>
+    <div id="FILE_SELECT" style="display:none;">
+        <div>
+            <p onclick='document.getElementById("FILE_SELECT").style.display = "none";'>X</p>
+            <input type="file" id="file-selector">
+            <script>
+                const fileSelector = document.getElementById('file-selector');
+                fileSelector.addEventListener('change', (event) => {
+                    const fileList = event.target.files;
+                    console.log(fileList);
+                });
+            </script>
         </div>
     </div>
 </body>

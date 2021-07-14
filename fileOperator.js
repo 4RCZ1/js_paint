@@ -9,28 +9,24 @@ function presetting(){
     modeSetter();
 }
 function saveFile(){
-    // let imgData = new Array();
-    // for(let i=0;i<layerNum;i+=2){
-    //     c = document.getElementById(activeLayer);
-    //     ctx = c.getContext("2d");
-    //     imgData.push(ctx.getImageData);
-    // }
-    let imgData = ctx.getImageData(0,0,500,500);
+    let content = JSON.stringify(objects);
+    let file = new Blob([content], {type: 'text/plain'});
     let filename="save1";
-    let data=imgData;
     let element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
+    element.href = URL.createObjectURL(file);
+    element.download = filename;
     element.click();
+}
 
-    document.body.removeChild(element);
+function openFile(file) {
+    const reader = new FileReader();
+    objects=JSON.parse(reader.readAsText(file));
 }
-function openFile(){
-    console.log("nie.");
+
+function selectFile(){
+    document.getElementById("FILE_SELECT").style.display = "flex";
 }
+
 function clearFile(){
     console.log("F5 se kliknij ez");
 }
