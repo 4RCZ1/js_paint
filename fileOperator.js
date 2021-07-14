@@ -20,7 +20,13 @@ function saveFile(){
 
 function openFile(file) {
     const reader = new FileReader();
-    objects=JSON.parse(reader.readAsText(file));
+    reader.onload = function(e) {
+        console.log(e.target.result)
+        objects=JSON.parse(reader.result);
+        console.log(objects);
+        objects.forEach((element,index) => {addLayer('obj'); objSelect(index); objSubmit();addObjectToList(element[0],index); console.log(index);})
+    };
+    reader.readAsText(file)
 }
 
 function selectFile(){

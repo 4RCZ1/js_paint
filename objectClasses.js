@@ -59,7 +59,6 @@ class Rectangle {
             this.f=ctx.fillStyle;
         }
         if(border){
-            console.log(ctx.strokeStyle);
             this.b=ctx.strokeStyle;
         }
 
@@ -146,7 +145,6 @@ class Circle {
             this.f = ctx.fillStyle;
         }
         if (border) {
-            console.log(ctx.strokeStyle);
             this.b = ctx.strokeStyle;
         }
 
@@ -269,7 +267,6 @@ class Bezier{
             this.f = ctx.fillStyle;
         }
         if (border) {
-            console.log(ctx.strokeStyle);
             this.b = ctx.strokeStyle;
         }
 

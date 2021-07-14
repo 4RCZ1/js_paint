@@ -125,6 +125,7 @@
                 fileSelector.addEventListener('change', (event) => {
                     const fileList = event.target.files;
                     console.log(fileList);
+                    openFile(fileList[0]);
                 });
             </script>
         </div>

@@ -43,7 +43,6 @@ function objSelect(i=null){
             object.configure();
         }, 10);
     }
-    console.log("Layer set to "+activeLayer);
 }
 function objAdd(_object){
     clearInterval(objTimer);
@@ -87,16 +86,23 @@ function objAdd(_object){
 
 }
 
-function addObjectToList(label){
+function addObjectToList(label,index='none'){
     let option = document.createElement("option");
-    option.text = label+" "+objects.length;
-    option.value = objects.length-1;
+    if(index==='none'){
+        option.text = label+" "+objects.length;
+        option.value = objects.length-1;
+    }else{
+        console.log(index);
+        option.text = label+" "+(index+1);
+        option.value = index;
+    }
     document.getElementById("objects").add(option);
     objLayerSelect(layerNum);
 }
 
 function objSubmit(){
     if(object){
+        object.draw();
         object.save();
         object = false;
         clearInterval(objTimer);
