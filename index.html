@@ -22,7 +22,8 @@
             <span>File</span>
             <div class="dropdown-content">
                 <button onclick="clearFile()">New</button>
-                <button onclick="saveFile()">Save</button>
+                <button onclick="saveObjects()">Save objects</button>
+                <button onclick="saveImage()">Save image</button>
                 <button onclick="selectFile()">Open</button>
             </div>
         </div>
@@ -47,6 +48,7 @@
     <div id="WORKSPACE">
         <canvas width="500" height="500" id="cursor"></canvas>
         <canvas width="500" height="500" id="clickGetter" onclick="placeObject()" onmousedown="brushStart()" onmouseup="brushStop()" onmouseleave="brushStop()"></canvas>
+        <canvas width="500" height="500" id="imageGetter" style="z-index: -1"></canvas>
         <canvas width="500" height="500" id="0" style="z-index: 0;"></canvas>
     </div>
     <div id="PROPERTIES">
@@ -124,7 +126,7 @@
                 const fileSelector = document.getElementById('file-selector');
                 fileSelector.addEventListener('change', (event) => {
                     const fileList = event.target.files;
-                    console.log(fileList);
+                    //console.log(fileList);
                     openFile(fileList[0]);
                 });
             </script>

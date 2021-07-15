@@ -15,14 +15,12 @@ function brushStart(){
     // }
     clearInterval(brushTimer);
     if(brushMode){
-        console.log('brushStart');
         ctx.beginPath();
         ctx.moveTo(mouseX,mouseY);
         brushTimer=setInterval(function(){ ctx.lineTo(mouseX,mouseY); ctx.stroke();},1);
     }
 }
 function brushStop(){
-    console.log('brushStop');
     ctx.stroke();
     clearInterval(brushTimer);
 }

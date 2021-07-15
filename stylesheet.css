@@ -49,7 +49,7 @@ canvas{
     z-index:201;
 }
 #clickGetter{
-    z-index:202;
+    z-index:203;
 }
 .dropdown {
     position: relative;
@@ -64,7 +64,7 @@ canvas{
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     padding: 12px 16px;
-    z-index: 203;
+    z-index: 204;
 }
 
 .dropdown:hover .dropdown-content {
