@@ -42,12 +42,13 @@
                 <button onclick="_add('eraser')">Eraser</button>
                 <button onclick="select()">Select</button>
                 <button onclick="brush()">Brush</button>
+                <button onclick="gradient()">Gradient</button>
             </div>
         </div>
     </div>
     <div id="WORKSPACE">
         <canvas width="500" height="500" id="cursor"></canvas>
-        <canvas width="500" height="500" id="clickGetter" onclick="placeObject()" onmousedown="brushStart()" onmouseup="brushStop()" onmouseleave="brushStop()"></canvas>
+        <canvas width="500" height="500" id="clickGetter" onclick="placeObject()" onmousedown="brushStart();" onmouseup="brushStop()" onmouseleave="brushStop()"></canvas>
         <canvas width="500" height="500" id="imageGetter" style="z-index: -1"></canvas>
         <canvas width="500" height="500" id="0" style="z-index: 0;"></canvas>
     </div>
