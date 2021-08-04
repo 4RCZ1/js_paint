@@ -23,6 +23,9 @@ class Pinpoint {
         this.x=x;
         this.y=y;
     }
+    position(){
+        return[this.x,this.y];
+    }
 }
 function quickPin(x,y){
     //white outline

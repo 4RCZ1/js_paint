@@ -10,7 +10,6 @@ class Rectangle {
         this.f=f;
         this.index=index;
 
-        //console.log(layer);
         objLayerSelect(layer);
         //reversedAllSetter(this.b,this.f,this.w,this.h);
 

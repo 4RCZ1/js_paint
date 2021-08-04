@@ -266,7 +266,7 @@ function placeObject(){
 
 
             if(phase===0) {
-                brushReversedSetter(false);
+                //brushReversedSetter(false);
                 addPoint();
                 cTimer=setInterval(drawPolygon,10);
                 phase++;
@@ -286,7 +286,7 @@ function placeObject(){
 
             }
         }
-        else {
+        else if(placedObject==='bezier'){
             clearInterval(placing);
             if(phase===0) {
                 bezierController();
