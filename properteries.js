@@ -92,6 +92,7 @@ function modeSetter(){
     if(objectMode===true) {
         document.getElementById("LayersBox").style.display = "none";
         document.getElementById("pixelSizes").style.display = "none";
+        document.getElementById("addGradient").style.display = "inline-block";
         //setting clicks
         document.getElementById("clickGetter").setAttribute('onclick','click()');
         document.getElementById("clickGetter").setAttribute('onmousedown','mouseDown()');
@@ -113,6 +114,7 @@ function modeSetter(){
     }else{
         document.getElementById("LayersBox").style.display = "block";
         document.getElementById("pixelSizes").style.display = "block";
+        document.getElementById("addGradient").style.display = "none";
         //setting clicks
         document.getElementById("clickGetter").setAttribute('onclick','placeObject()');
         document.getElementById("clickGetter").setAttribute('onmousedown','brushStart()');

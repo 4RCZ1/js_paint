@@ -49,6 +49,8 @@ function objAdd(_object){
     let b=false,f=false;
     addLayer("object");
 
+    object=false;
+
     placedObject=_object;
     cCursor = document.getElementById("cursor");
     ctxCursor = cCursor.getContext("2d");
@@ -80,6 +82,15 @@ function objAdd(_object){
         console.log("Polygon");
         object=new Polygon([200,200,300,200,300,300],parseInt(activeLayer), b, f);
         objTimer=setInterval(function(){object.draw();object.configure();},10);
+    }
+    else if(placedObject==='gradient'){
+        console.log("Gradient");
+        object=new Gradient(0,250,500,250,parseInt(activeLayer));
+        objTimer=setInterval(function(){object.draw();object.configure();},10);
+    }
+
+    if(object){
+        //objTimer=setInterval(function(){object.draw();object.configure();},10); this line can be moved here, and that would be more practical in case of any changes
     }
 
     console.log("object ",_object," added");

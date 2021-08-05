@@ -421,3 +421,76 @@ class Polygon{
     }
 }
 
+class Gradient{
+    constructor(startX,startY,endX,endY,layer,grd=false,index=null){
+        this.startX=startX;
+        this.startY=startY;
+        this.endX=endX;
+        this.endY=endY;
+        this.layer=layer;
+        this.grd=grd;
+        this.index=index;
+
+        objLayerSelect(layer);
+        //reversedAllSetter(this.b,this.f,this.w,this.h);
+
+        this.startPin = new Pinpoint(this.startX,this.startY);
+        this.endPin = new Pinpoint(this.endX,this.endY);
+        clear("cursor");
+    }
+    draw(){
+        clear();
+        ctx.fillStyle = this.grd;
+        ctx.fillRect(0, 0, 500, 500);
+    }
+    configure(){
+        this.startPin.draw();
+        this.endPin.draw();
+
+        this.startPin.followOnClick();
+        this.endPin.followOnClick();
+
+        if(this.startPin.following){
+            this.startPin.modify(mouseX,mouseY);
+            clear("cursor");
+        }else if(this.endPin.following){
+            this.endPin.modify(mouseX,mouseY);
+            clear("cursor");
+        }
+
+        this.grd=ctx.createLinearGradient(this.startPin.position()[0], this.startPin.position()[1], this.endPin.position()[0], this.endPin.position()[1]);
+        this.grd.addColorStop(0, document.getElementById("fillColor").value);
+        this.grd.addColorStop(1, ctx.strokeStyle);
+
+        this.startPin.draw();
+        this.endPin.draw();
+
+    }
+    save(){
+        clear("cursor");
+
+        if(this.index===null) {
+            objects.push(["grad",this.startX, this.startY, this.endX, this.endY, this.layer, this.grd, objects.length]);
+            addObjectToList("Gradient")
+        }else{
+            objects[this.index]=["grad",this.startX, this.startY, this.endX, this.endY, this.layer, this.grd, this.index];
+        }
+    }
+    update(changes){
+        this.startX=changes[0];
+        this.startY=changes[1];
+        this.endX=changes[2];
+        this.endY=changes[3];
+        this.grd=changes[4];
+    }
+    getData(){
+        if(this.index===null){
+            this.save();
+            this.index=objects.length-1;
+        }
+        return [this.startX,this.startY,this.endX,this.endY,this.grd,this.index];
+    }
+    debug(){
+        console.log("startX:",this.startX," startY:",this.startY," endX:",this.endX," endY:",this.endY," layer:",this.layer," grd:",this.grd);
+    }
+}
