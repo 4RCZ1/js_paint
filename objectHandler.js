@@ -36,6 +36,8 @@ function objSelect(i=null){
         object=new Bezier(objects[i][1],objects[i][2],objects[i][3],objects[i][4],objects[i][5],objects[i][6],objects[i][7],objects[i][8],objects[i][9],objects[i][10],objects[i][11],objects[i][12],i)
     }else if(objects[i][0]==="poly"){
         object=new Polygon(objects[i][1],objects[i][2],objects[i][3],objects[i][4],objects[i][5],i)
+    }else if(object[i][0]==='grad'){
+        object=object=new Rectangle(objects[i][1],objects[i][2],objects[i][3],objects[i][4],objects[i][5],objects[i][6],i)
     }
     if(isPlaying===false) {
         objTimer = setInterval(function () {
