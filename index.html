@@ -17,32 +17,32 @@
 </head>
 <body onload="presetting()">
     <div id="TOOLBAR">
-        <button type="button" onclick="clear2()">Clear</button>
         <div class="dropdown">
             <span>File</span>
             <div class="dropdown-content">
-                <button onclick="clearFile()">New</button>
-                <button onclick="saveObjects()">Save objects</button>
-                <button onclick="saveImage()">Save image</button>
-                <button onclick="selectFile()">Open</button>
+                <div class="dropdown-button" onclick="clearFile()">New</div>
+                <div class="dropdown-button" onclick="saveObjects()">Save objects</div>
+                <div class="dropdown-button" onclick="saveImage()">Save image</div>
+                <div class="dropdown-button" onclick="selectFile()">Open</div>
             </div>
         </div>
         <div class="dropdown">
             <span>Add</span>
             <div class="dropdown-content">
-                <button id="addRectangle" onclick="_add('rectangle')">Rectangle</button>
-                <button id="addCircle" onclick="_add('circle')">Circle</button>
-                <button id="addBezier" onclick="_add('bezier')">Bezier Curve</button>
-                <button id="addPolygon" onclick="_add('polygon')">Polygon</button>
-                <button id="addGradient" onclick="objAdd('gradient')">Gradient</button>
+                <div class="dropdown-button" id="addRectangle" onclick="_add('rectangle')">Rectangle</div>
+                <div class="dropdown-button" id="addCircle" onclick="_add('circle')">Circle</div>
+                <div class="dropdown-button" id="addBezier" onclick="_add('bezier')">Bezier Curve</div>
+                <div class="dropdown-button" id="addPolygon" onclick="_add('polygon')">Polygon</div>
+                <div class="dropdown-button" id="addGradient" onclick="objAdd('gradient')">Gradient</div>
             </div>
         </div>
         <div class="dropdown">
             <span>Tool</span>
             <div class="dropdown-content">
-                <button onclick="_add('eraser')">Eraser</button>
-                <button onclick="select()">Select</button>
-                <button onclick="brush()">Brush</button>
+                <div class="dropdown-button" onclick="_add('eraser')">Eraser</div>
+                <div class="dropdown-button" onclick="select()">Select</div>
+                <div class="dropdown-button" onclick="brush()">Brush</div>
+                <div class="dropdown-button" onclick="clear()">Clear</div>
             </div>
         </div>
     </div>
