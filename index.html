@@ -70,15 +70,35 @@
         </div>
         <div id="SizesBox">
             <div id="pixelSizes">
-                <label for="width">Width: </label>
-                <input type="number" value="10" min="1" id="width" onchange="widthSetter()">
-                <label for="height">Height: </label>
-                <input type="number" value="10" min="1" id="height" onchange="heightSetter()">
-                <label for="radius">Radius: </label>
-                <input type="number" value="10" min="1" id="radius" onchange="radiusSetter()">
+
+                <div class="number-input">
+                    <label for="width">Width: </label>
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();widthSetter()" class="minus">-</button>
+                    <input type="number" value="10" min="1" id="width" onchange="widthSetter()">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();widthSetter()" class="plus">+</button>
+                </div>
+
+                <div class="number-input">
+                    <label for="height">Height: </label>
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();heightSetter()" class="minus">-</button>
+                    <input type="number" value="10" min="1" id="height" onchange="heightSetter()">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();heightSetter()" class="plus">+</button>
+                </div>
+
+                <div class="number-input">
+                    <label for="radius">Radius: </label>
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();radiusSetter()" class="minus">-</button>
+                    <input type="number" value="10" min="1" id="radius" onchange="radiusSetter()">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();radiusSetter()" class="plus">+</button>
+                </div>
             </div>
-            <label for="lWidth">Line width: </label>
-            <input type="number" value="3" min="1" id="lWidth" onchange="lWidthSetter()">
+
+            <div class="number-input">
+                <label for="lWidth">Line width: </label>
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();lWidthSetter()" class="minus">-</button>
+                <input type="number" value="3" min="1" id="lWidth" onchange="lWidthSetter()">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();lWidthSetter()" class="plus">+</button>
+            </div>
         </div>
         <div id="BordersBox">
             <label for="fill">Fill: </label>
@@ -97,14 +117,27 @@
     </div>
     <div id="TIMELINE">
         <div id="frameNumbers">
-            <label for="startFrame">starting frame</label>
-            <input type="number" id="startFrame" onchange="startFrameSetter()" value="0">
+            <div class="number-input">
+                <label for="startFrame">starting frame</label>
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();startFrameSetter()" class="minus">-</button>
+                <input type="number" id="startFrame" onchange="startFrameSetter()" value="0">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();startFrameSetter()" class="plus">+</button>
+            </div>
 
-            <label for="frame">frame</label>
-            <input type="number" id="frame" onchange="frameSetter()" value="0">
+            <div class="number-input">
+                <label for="frame">frame</label>
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();frameSetter()" class="minus">-</button>
+                <input type="number" id="frame" onchange="frameSetter()" value="0">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();frameSetter()" class="plus">+</button>
+            </div>
 
-            <label for="endFrame">end frame</label>
-            <input type="number" id="endFrame" onchange="endFrameSetter()" value="100">
+            <div class="number-input">
+                <label for="endFrame">end frame</label>
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();endFrameSetter()" class="minus">-</button>
+                <input type="number" id="endFrame" onchange="endFrameSetter()" value="100">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();endFrameSetter()" class="plus">+</button>
+            </div>
+
         </div>
         <div id="keyframes">
             <button id="addKeyframe" onclick="addKeyframe()">Add keyframe</button>
@@ -115,8 +148,12 @@
             <button onclick="stop()">Pause</button>
             <button onclick="nextFrame()">Next frame</button>
 
-            <label for="endFrame">Framerate</label>
-            <input type="number" id="framerate" onchange="framerateSetter()" value="12" min="1" max="60">
+            <div class="number-input">
+                <label for="endFrame">Framerate</label>
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();framerateSetter()" class="minus">-</button>
+                <input type="number" id="framerate" onchange="framerateSetter()" value="12" min="1" max="60">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();framerateSetter()" class="plus">+</button>
+            </div>
         </div>
     </div>
     <div id="FILE_SELECT" style="display:none;">
@@ -127,7 +164,6 @@
                 const fileSelector = document.getElementById('file-selector');
                 fileSelector.addEventListener('change', (event) => {
                     const fileList = event.target.files;
-                    //console.log(fileList);
                     openFile(fileList[0]);
                 });
             </script>
